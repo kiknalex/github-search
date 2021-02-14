@@ -7,7 +7,7 @@ const Header = () => {
             <a href="#">Home</a>
             <div className="search-container">
             <input type="text" placeholder="Username"></input>
-            <button><i class="fas fa-search"></i></button>
+            <button><i className="fas fa-search"></i></button>
             </div>
         </header>
     )
