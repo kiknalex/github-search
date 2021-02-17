@@ -1,11 +1,12 @@
 import './index.css'
 import Header from './components/Header'
-import User from './components/User'
 import Users from './components/Users'
+import ViewButton from './components/ViewButton'
 function App() {
   return (
     <div className="container">
       <Header />
+      <ViewButton />
       <Users />
     </div>
   );
