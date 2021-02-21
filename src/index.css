@@ -8,19 +8,11 @@
 html {
   font-size: 62.5%;
 }
-
-/* ----- Variables to change grid*list view ----- */
 :root {
-  --flex-direction: row;
-  --flex-wrap: nowrap;
-  --user-container-width: calc(90% / 3);
+  --user-info-width: 90%;
 }
 
-/* ----- ----- */
 body {
-  width: 100vw;
-  height: 100vh;
-  /* background-color: 	hsl(15, 0%, 0%); */
   background-color: rgb(12, 15, 10);
 }
 .container {
@@ -29,6 +21,7 @@ body {
   margin-right: auto;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 /* ----- Header ----- */
@@ -59,46 +52,64 @@ input {
   border: 3px solid white;
   border-radius: 3px;
 }
-header button {
-  color: rgb(216, 216, 216);
+button {
+  color: rgb(184, 197, 214);
   border:none;
   background-color:transparent;
   outline:none;
   font-size: 2rem;
 }
-/* ----- /Header ----- */
-/* ----- Grid-List Button ----- */ 
+
+/* ----- Grid To List Button ----- */ 
 .view-btn {
-  width: 4.6rem;
-  height: 4.6rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  align-self: flex-end;
+  margin-top: 5rem;
+  margin-right: 1rem;
 }
 
 /* ----- Home Main Content ----- */
 
 .users-listing {
-  margin-top: 5rem;
+  margin-top: 1rem;
+  width: 100%;
   color: white;
   display: flex;
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
 }
+.users-layout-grid {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.users-layout-list {
+  flex-direction: column;
+  flex-wrap: nowrap;
+  --user-info-width: 50%;
+}
 .user-container {
-  width: 30%;
   margin: 0.5rem;
   padding: 0.5rem;
   border: 1px solid rgb(145, 145, 145);
   border-radius: 3px;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+.user-container-grid {
+  width: 30%;
+  flex-direction: column;
+}
+.user-container-list {
+  font-size: 1.4rem;
 }
 .user {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 90%;
+  width: var(--user-info-width, 90%)
 }
 img {
   margin-top: 0.5rem;
@@ -107,20 +118,23 @@ img {
   border-radius: 50%;
 }
 .user a {
+  max-width: 95%;
   color: rgb(204, 122, 103);
   margin-top: 0.5rem;
   font-size: 1.2rem;
   text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .user h3 {
   color: rgb(184, 197, 214);
 }
 .user-info {
   margin-top: 1.5rem;
-  width: 100%;
+  width: var(--user-info-width, 90%);
   display: flex;
   flex-direction: column;
-  
 }
 .user-info h2 {
   color: rgb(184, 197, 214);
@@ -136,3 +150,45 @@ img {
   overflow: hidden;
 }
 /* ----- /Home Main Content ----- */
+
+/* ----- Media Queries ----- */
+@media only screen and (min-width: 768px) {
+  body {
+    font-size: 1.2rem;
+  }
+  .users-listing {
+    width: 50%;
+  }
+  .user-container-grid {
+    width: 25%;
+  }
+  .user-container-list {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    font-size: 1.4rem;
+  }
+
+}
+@media only screen and (min-width: 1024px) {
+  body {
+    font-size: 1.4rem;
+  }
+  .users-listing {
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+  }
+  .user a {
+    font-size: 1.4rem;
+  }
+  .user-container-grid {
+    width: 30%;
+  }
+  .user-info h2 {
+    font-size: 1.5rem;
+  }
+  .user-info li {
+    font-size: 1.3rem;
+  }
+}

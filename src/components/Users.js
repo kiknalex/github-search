@@ -2,9 +2,8 @@ import "../index.css"
 import React, { useState, useEffect } from 'react';
 import User from './User'
 import userSearch from '../services/userSearch';
-import {styles} from './viewStyles'
-const Users = () => {
-    const [users, setUsers] = useState([])
+import ViewButton from './ViewButton'
+const Users = ({ gridView, users, setUsers }) => {
     useEffect(() => {
         userSearch
         .mostPopularUsers()
@@ -17,15 +16,19 @@ const Users = () => {
     }, [])
     
     return (
-        <div className="users-listing">
+        
+           
+        <div className={`users-listing ${gridView ? 'users-layout-grid' : 'users-layout-list'}`} >
             {users.length > 0 ? 
             users.map(user => {
                 return <User
                 user={user}
                 key={user.id}
+                gridView={gridView}
                 />
             })
              : <h1>Loading...</h1>}
+        
         </div>
     )
 }

@@ -3,7 +3,7 @@ import "../index.css"
 import "../services/userSearch"
 import userSearch from '../services/userSearch';
 
-const User = ({ user, users }) => {
+const User = ({ user, users, gridView }) => {
     const [userRepos, setUserRepos] = useState([])
     useEffect(() => {
         userSearch
@@ -16,7 +16,7 @@ const User = ({ user, users }) => {
         })
     }, [])
     return (
-        <div className="user-container">
+        <div className={`user-container ${gridView ? 'user-container-grid' : 'user-container-list'}`}>
             <div className="user">
            <img src={user.avatar_url}></img>
            <a href={user.url}>{user.login}</a>
@@ -24,14 +24,22 @@ const User = ({ user, users }) => {
             </div>
             <div className="user-info">
                 <h2>Repositories</h2>
-                {userRepos.length > 0 ?
                 <ul>
-                    <li key={userRepos[0].id}>{userRepos[0].name}</li>
-                    <li key={userRepos[1].id}>{userRepos[1].name}</li>
-                    <li key={userRepos[2].id}>{userRepos[2].name}</li>
-                </ul>
-                : <h3>Loading...</h3>
+                { userRepos.length > 0 ?
+                userRepos.reduce((acc, repo) => {
+                    
+                    if(acc.length < 3 && userRepos.length > acc.length){
+                    acc.push(<li key={repo.id}>{repo.name}</li>)
+                    
+                    } else if(acc.length < 4){
+                        console.log("else11111:", acc)
+                        acc.push(<h4>No Info</h4>)
+                        console.log("else22222:", acc)
+                    }
+                    return acc;
+                }, []) : <h3 style={{color: "gray"}}>No Info</h3>
                 }
+                </ul>
             </div>
         </div>
     )
