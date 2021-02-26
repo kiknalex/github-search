@@ -2,6 +2,7 @@ import axios from 'axios'
 
 const popularUsersUrl = "https://api.github.com/search/users?q=followers%3A%3E%3D1000&ref=searchresults&s=followers&type=Users"
 const searchUrl = "https://api.github.com/search/users?q="
+const userDataUrl = "https://api.github.com/users/"
 const headers = {
     "Authorization" : `token ${process.env.REACT_APP_API_KEY}`
 }
@@ -22,7 +23,12 @@ const usernameSearch = (username) => {
         "headers": headers
     });
     return request.then(response => response.data)
-
+}
+const userData = (username) => {
+    const request = axios.get(`${userDataUrl}${username}`, {
+        "headers": headers
+    });
+    return request.then(response => response.data)
 }
 
-export default ({ mostPopularUsers, userRepos, usernameSearch })
+export default ({ mostPopularUsers, userRepos, usernameSearch, userData })

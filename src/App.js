@@ -8,9 +8,11 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 function App() {
   const [gridView, setGridView] = useState(true)
   const [users, setUsers] = useState([])
+  const [userLink, setUserLink] = useState("")
   return (
     <Router>
     <div className="container">
+      <Switch>
       <Route exact path="/home">
       <Header setUsers={setUsers} />
       <ViewButton 
@@ -21,9 +23,13 @@ function App() {
       gridView={gridView}
       users={users}
       setUsers={setUsers}
+      setUserLink={setUserLink}
       />
       </Route>
-      <Route path="/userpage" exact component={UserPage} />
+      <Route path={`/${userLink}`}>
+        <UserPage username={userLink} />
+      </Route>
+      </Switch>
     </div>
     </Router>
   );

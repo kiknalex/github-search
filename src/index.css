@@ -10,6 +10,8 @@ html {
 }
 :root {
   --user-info-width: 90%;
+  --font-color: rgb(184, 197, 214);
+  --dropdown-display: -9999;
 }
 
 body {
@@ -33,12 +35,12 @@ header {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  color:rgb(184, 197, 214);
+  color:var(--font-color);
   padding-top: 1rem;
 }
 header a {
   text-decoration: none;
-  color:rgb(184, 197, 214);
+  color:var(--font-color);
   font-size: 2rem;
 }
 .search-container {
@@ -46,19 +48,28 @@ header a {
   justify-content: flex-start;
 }
 input {
+  position: relative;
   outline: none;
   margin-right: 1rem;
   height: 3.5rem;
   border: 3px solid white;
   border-radius: 3px;
 }
+
+
+
 button {
-  color: rgb(184, 197, 214);
+  color: var(--font-color);
   border:none;
   background-color:transparent;
   outline:none;
   font-size: 2rem;
+  cursor: pointer;
 }
+button:hover {
+  filter: brightness(150%);
+}
+
 
 /* ----- Grid To List Button ----- */ 
 .view-btn {
@@ -117,8 +128,8 @@ img {
   height: 5rem;
   border-radius: 50%;
 }
-.user a {
-  max-width: 95%;
+.user-link {
+  max-width: 100%;
   color: rgb(204, 122, 103);
   margin-top: 0.5rem;
   font-size: 1.2rem;
@@ -127,8 +138,15 @@ img {
   white-space: nowrap;
   overflow: hidden;
 }
-.user h3 {
-  color: rgb(184, 197, 214);
+.user-link:hover {
+  filter: brightness(150%);
+}
+a:hover {
+  filter: brightness(150%);
+}
+
+.user-type {
+  color: var(--font-color);
 }
 .user-info {
   margin-top: 1.5rem;
@@ -137,7 +155,7 @@ img {
   flex-direction: column;
 }
 .user-info h2 {
-  color: rgb(184, 197, 214);
+  color: var(--font-color);
   font-size: 1.2rem;
   text-align: center;
 }
@@ -149,7 +167,109 @@ img {
   white-space: nowrap;
   overflow: hidden;
 }
-/* ----- /Home Main Content ----- */
+
+/* ----- User Page ----- */
+.user-data-container h3 {
+  color: white;
+}
+.home-link {
+  margin-top: 2rem;
+  color: var(--font-color);
+}
+.home-router-link {
+  text-decoration: none;
+}
+.user-data-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 95%;
+  border: 1px solid rgb(145, 145, 145);
+  margin-top: 3rem;
+}
+.userpage-user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.username-page-link {
+  color: rgb(204, 122, 103);
+  margin-top: 0.5rem;
+  font-size: 1.6rem;
+  text-decoration: none;
+}
+.userpage-user-info h2 {
+  color: var(--font-color);
+}
+.user-description {
+  width: 80%;
+  margin-top: 1rem;
+}
+.section-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--font-color);
+  font-size: 1.2rem;
+}
+.section-name::before {
+  content: '';
+  display: block;
+  height: 0.09em;
+  min-width: 19vw;
+  background: linear-gradient(to right, rgba(240,240,240,0), var(--font-color));
+  margin-right: 2rem;
+}
+.section-name::after {
+  content: '';
+  display: block;
+  height: 0.09em;
+  min-width: 19vw;
+  background: linear-gradient(to left, rgba(240,240,240,0), var(--font-color));
+  margin-left: 2rem;
+}
+.repos {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+.repos ul {
+  list-style-type: none;
+  color: white;
+  font-size: 1.05rem;
+ 
+}
+.repos li + li {
+  margin-top: 0.1rem;
+}
+.organizations {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.org {
+  min-width: 33.3%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  border: 1px solid rgb(145, 145, 145);
+  margin: 0.5rem;
+}
+.org a {
+  margin-top: 0.1rem;
+  margin-bottom: 0.5rem;
+  text-decoration: none;
+  font-size: 1.2rem;
+  color: rgb(204, 122, 103);
+}
+.org img {
+  width: 4rem;
+  height: 4rem;
+}
+
 
 /* ----- Media Queries ----- */
 @media only screen and (min-width: 768px) {
@@ -168,6 +288,21 @@ img {
     width: 100%;
     font-size: 1.4rem;
   }
+  /* ----- User Page ----- */
+  .section-name {
+    font-size: 1.6rem;
+  }
+  .repos li {
+    font-size: 1.3rem;
+  }
+  .org {
+    min-width: 25%;
+  }
+  .userpage-user-info img {
+    width: 6rem;
+    height: 6rem;
+  }
+
 
 }
 @media only screen and (min-width: 1024px) {
@@ -179,7 +314,7 @@ img {
     margin-right: auto;
     width: 40%;
   }
-  .user a {
+  .user-link {
     font-size: 1.4rem;
   }
   .user-container-grid {
@@ -190,5 +325,18 @@ img {
   }
   .user-info li {
     font-size: 1.3rem;
+  }
+  /* ----- User Page ----- */
+  .user-data-container {
+    width: 60%;
+  }
+  .section-name {
+    font-size: 1.8rem;
+  }
+  .repos li {
+    font-size: 1.6rem;
+  }
+  .org a {
+    font-size: 1.4rem;
   }
 }

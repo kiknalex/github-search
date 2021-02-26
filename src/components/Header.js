@@ -17,9 +17,10 @@ const Header = ({ setUsers }) => {
     return (
         <header>
             <h2>Github User Search</h2>
-            <a href="#">Home</a>
             <div className="search-container">
+            <div>
             <input type="text" placeholder="Username" onChange={e => setUsername(e.target.value)}></input>
+            </div>
             <button onClick={search}><i className="fas fa-search"></i></button>
             </div>
         </header>
